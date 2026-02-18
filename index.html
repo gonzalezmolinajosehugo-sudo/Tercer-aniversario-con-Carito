@@ -1,84 +1,96 @@
 index.html
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3 Años con Carito ❤️</title>
+<meta charset="UTF-8">
+<title>Feliz 3 Años, Carito ❤️</title>
 
 <style>
-body{
-margin:0;
-font-family: Arial, sans-serif;
-background: linear-gradient(135deg,#ff4d88,#6a0dad);
-color:white;
-text-align:center;
-padding:30px;
-overflow-x:hidden;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #ff4da6, #8e2de2);
+    color: white;
 }
 
-h1{font-size:40px;margin-bottom:10px;}
-button{
-padding:12px 20px;
-border:none;
-border-radius:10px;
-background:white;
-color:#ff4d88;
-font-weight:bold;
-cursor:pointer;
-margin:10px;
+h1 {
+    margin-top: 40px;
+    font-size: 40px;
 }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-margin-top:20px;
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background: white;
+    color: #8e2de2;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.gallery img{
-width:100%;
-border-radius:15px;
-cursor:pointer;
-transition:0.3s;
+button:hover {
+    transform: scale(1.1);
 }
 
-.gallery img:hover{
-transform:scale(1.05);
+/* Fechas */
+.counter {
+    margin-top: 20px;
+    font-size: 18px;
 }
 
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
+/* Galería */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 40px;
 }
 
-.modal img{
-max-width:80%;
-max-height:80%;
-border-radius:15px;
+.gallery img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.counter{
-margin-top:20px;
-font-size:18px;
+.gallery img:hover {
+    transform: scale(1.05);
 }
 
-#letterBox{
-display:none;
-background:white;
-color:#333;
-padding:20px;
-border-radius:15px;
-max-width:700px;
-margin:20px auto;
-text-align:left;
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal img {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -88,107 +100,101 @@ text-align:left;
 <h1>Feliz 3 Años, Carito ❤️</h1>
 <p>Gracias por hacer mi vida más bonita desde el primer día.</p>
 
-<button onclick="toggleLetter()">Abrir carta 💌</button>
-<button onclick="toggleMusic()">Música 🎵</button>
+<button onclick="mostrarCarta()">Abrir carta 💌</button>
 
-<div class="counter">
-💫 Desde que empezamos a salir (31/10/2022):  
-<div id="counter1"></div>
-<br>
-❤️ Desde que somos novios (12/03/2023):  
-<div id="counter2"></div>
-</div>
+<div class="counter" id="fechas"></div>
 
-<div id="letterBox">
-Mi niña, felices 3 años.
-
-Es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti.
-
-No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba a tener el privilegio de estar con esa niña tan hermosa, auténtica y perfecta durante estos tres años.
-
-Contigo simplemente disfruto más mi vida. Cosas tan simples como descansar, comer, ver una película, platicar, dormir, caminar, etc., haces que se sientan especiales. A todo le das tu toque auténtico y haces que lo disfrute más.
-
-Te agradezco por estar 365 días más conmigo, que me imagino que no es fácil porque sí soy un poco cadillo jajaja, pero espero que también eso haga que no te aburras.
-
-Poniéndonos un poco más serios, te quiero dar las gracias a ti por ser mi lugar seguro; un lugar en donde puedo ser yo. Y aunque a veces me cueste expresar cómo me siento, el solo verte a los ojos o sentir un abrazo tuyo hace que mis problemas dejen de verse como tal y en cambio los vea como una oportunidad de mejorar.
-
-Contigo me siento pleno y seguro. No me canso de estar contigo y de poder compartir momentos inolvidables a tu lado.
-
-Eres la mujer de mis sueños. Estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino.
-
-Te amo hoy y siempre ❤️
-
-— Jose Hugo
-</div>
-
+<!-- GALERÍA -->
 <div class="gallery">
-<img src="1c.jpg" onclick="openModal(this.src)">
-<img src="2c.jpg" onclick="openModal(this.src)">
-<img src="3c.jpg" onclick="openModal(this.src)">
-<img src="4c.jpg" onclick="openModal(this.src)">
+    <img src="1c.jpg" onclick="openModal(this.src)">
+    <img src="2c.jpg" onclick="openModal(this.src)">
+    <img src="3c.jpg" onclick="openModal(this.src)">
+    <img src="4c.jpg" onclick="openModal(this.src)">
+    <img src="5c.jpg" onclick="openModal(this.src)">
+    <img src="6c.jpg" onclick="openModal(this.src)">
+    <img src="7c.jpg" onclick="openModal(this.src)">
+    <img src="8c.jpg" onclick="openModal(this.src)">
+    <img src="9c.jpg" onclick="openModal(this.src)">
+    <img src="10c.jpg" onclick="openModal(this.src)">
+    <img src="11c.jpg" onclick="openModal(this.src)">
+    <img src="12c.jpg" onclick="openModal(this.src)">
+    <img src="13c.jpg" onclick="openModal(this.src)">
+    <img src="14c.jpg" onclick="openModal(this.src)">
+    <img src="15c.jpg" onclick="openModal(this.src)">
+    <img src="16c.jpg" onclick="openModal(this.src)">
+    <img src="17c.jpg" onclick="openModal(this.src)">
+    <img src="18c.jpg" onclick="openModal(this.src)">
+    <img src="19c.jpg" onclick="openModal(this.src)">
+    <img src="20c.jpg" onclick="openModal(this.src)">
+    <img src="21c.jpg" onclick="openModal(this.src)">
+    <img src="22c.jpg" onclick="openModal(this.src)">
+    <img src="23c.jpg" onclick="openModal(this.src)">
+    <img src="24c.jpg" onclick="openModal(this.src)">
+    <img src="25c.jpg" onclick="openModal(this.src)">
+    <img src="26c.jpg" onclick="openModal(this.src)">
+    <img src="27c.jpg" onclick="openModal(this.src)">
+    <img src="28c.jpg" onclick="openModal(this.src)">
+    <img src="29c.jpg" onclick="openModal(this.src)">
+    <img src="30c.jpg" onclick="openModal(this.src)">
 </div>
 
-<div class="modal" id="modal" onclick="closeModal()">
-<img id="modalImg">
+<!-- MODAL -->
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImg">
 </div>
-
-<audio id="music">
-<source src="song.mp3" type="audio/mpeg">
-</audio>
 
 <script>
-function calculateTime(startDate){
-const now = new Date();
-let years = now.getFullYear() - startDate.getFullYear();
-let months = now.getMonth() - startDate.getMonth();
-let days = now.getDate() - startDate.getDate();
 
-if(days < 0){
-months--;
-days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-}
-if(months < 0){
-years--;
-months += 12;
-}
+// Fechas
+function calcularFechas() {
+    const salir = new Date(2022, 9, 31); // 31/10/2022
+    const novios = new Date(2023, 2, 12); // 12/03/2023
+    const hoy = new Date();
 
-return years + " años, " + months + " meses, " + days + " días";
-}
+    function diferencia(fecha) {
+        let años = hoy.getFullYear() - fecha.getFullYear();
+        let meses = hoy.getMonth() - fecha.getMonth();
+        let dias = hoy.getDate() - fecha.getDate();
 
-function updateCounters(){
-document.getElementById("counter1").innerHTML =
-calculateTime(new Date(2022,9,31));
+        if (dias < 0) {
+            meses--;
+            dias += 30;
+        }
+        if (meses < 0) {
+            años--;
+            meses += 12;
+        }
 
-document.getElementById("counter2").innerHTML =
-calculateTime(new Date(2023,2,12));
-}
+        return `${años} años, ${meses} meses, ${dias} días`;
+    }
 
-updateCounters();
-
-function toggleLetter(){
-const box = document.getElementById("letterBox");
-box.style.display = box.style.display === "block" ? "none" : "block";
+    document.getElementById("fechas").innerHTML =
+        `💫 Desde que empezamos a salir (31/10/2022): ${diferencia(salir)}<br><br>
+         ❤️ Desde que somos novios (12/03/2023): ${diferencia(novios)}`;
 }
 
-function openModal(src){
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalImg").src=src;
+calcularFechas();
+
+// Carta
+function mostrarCarta() {
+    alert(`Mi niña felices 3 años... 
+Te amo hoy y siempre.
+
+- Jose Hugo ❤️`);
 }
 
-function closeModal(){
-document.getElementById("modal").style.display="none";
+// Modal
+function openModal(src) {
+    document.getElementById("myModal").style.display = "block";
+    document.getElementById("modalImg").src = src;
 }
 
-function toggleMusic(){
-const music=document.getElementById("music");
-if(music.paused){
-music.play();
-}else{
-music.pause();
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
 }
-}
+
 </script>
 
 </body>
 </html>
-
