@@ -1,200 +1,486 @@
 index.html
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Feliz 3 Años, Carito ❤️</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feliz 3 Años, Carito ❤️</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(135deg, #ff4da6, #8e2de2);
-    color: white;
-}
+  <style>
+    :root{
+      --bg1:#ff4da6;
+      --bg2:#8e2de2;
+      --card: rgba(255,255,255,.12);
+      --card2: rgba(255,255,255,.18);
+      --white: #fff;
+    }
 
-h1 {
-    margin-top: 40px;
-    font-size: 40px;
-}
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
 
-button {
-    padding: 12px 25px;
-    margin: 10px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    background: white;
-    color: #8e2de2;
-    font-weight: bold;
-    transition: 0.3s;
-}
+    /* Header */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding: 28px 18px 40px;
+      text-align:center;
+    }
 
-button:hover {
-    transform: scale(1.1);
-}
+    .title{
+      font-size: clamp(30px, 4vw, 52px);
+      font-weight: 800;
+      margin: 22px 0 8px;
+      letter-spacing:.3px;
+      text-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .subtitle{
+      opacity:.95;
+      margin:0 0 18px;
+      font-size: 16px;
+    }
 
-/* Fechas */
-.counter {
-    margin-top: 20px;
-    font-size: 18px;
-}
+    .btns{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    button{
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: #7b1fa2;
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    button:hover{ transform: translateY(-2px); }
+    button:active{ transform: translateY(0); }
 
-/* Galería */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-    padding: 40px;
-}
+    /* Counters */
+    .counters{
+      margin: 18px auto 0;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      max-width: 760px;
+    }
+    .counterCard{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 14px 16px;
+      backdrop-filter: blur(10px);
+      text-align:left;
+    }
+    .counterTop{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+    }
+    .counterTop .tag{
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.20);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .counterValue{
+      margin-top:8px;
+      font-size: 16px;
+      line-height: 1.45;
+      opacity:.98;
+    }
 
-.gallery img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+    /* Letter */
+    .letter{
+      display:none;
+      margin: 16px auto 0;
+      max-width: 760px;
+      background: rgba(255,255,255,.95);
+      color:#222;
+      border-radius: 18px;
+      padding: 16px 16px;
+      text-align:left;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      animation: pop .25s ease;
+      white-space: pre-line;
+    }
+    @keyframes pop{
+      from{ transform: translateY(6px); opacity:0; }
+      to{ transform: translateY(0); opacity:1; }
+    }
 
-.gallery img:hover {
-    transform: scale(1.05);
-}
+    /* Gallery */
+    .galleryWrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 18px 60px;
+    }
+    .galleryTitle{
+      text-align:center;
+      font-weight: 900;
+      letter-spacing:.3px;
+      margin: 20px 0 14px;
+      font-size: 18px;
+      opacity:.95;
+    }
 
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 60px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
-}
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .shot{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 22px;
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      transform: translateY(0);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .shot:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
+    .shot img{
+      width:100%;
+      height: 320px;
+      object-fit: cover;
+      display:block;
+    }
 
-.modal img {
-    margin: auto;
-    display: block;
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 20px;
-}
+    /* Modal */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.86);
+      z-index: 999;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+    }
+    .modalInner{
+      width: min(1000px, 96vw);
+      display:grid;
+      grid-template-columns: 52px 1fr 52px;
+      align-items:center;
+      gap: 10px;
+    }
+    .modalImg{
+      width:100%;
+      max-height: 82vh;
+      border-radius: 18px;
+      object-fit: contain;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .navBtn{
+      height:52px; width:52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      font-size: 24px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease;
+      user-select:none;
+    }
+    .navBtn:hover{ transform: scale(1.06); background: rgba(255,255,255,.18); }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-}
-</style>
+    .closeBtn{
+      position:fixed;
+      top: 14px;
+      right: 14px;
+      height:44px; width:44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      font-size: 24px;
+      cursor:pointer;
+      z-index:1000;
+    }
+
+    /* Final Section */
+    .final{
+      max-width: 900px;
+      margin: 0 auto 70px;
+      padding: 0 18px;
+      text-align:center;
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .final.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+    .finalCard{
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      padding: 18px 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+    }
+    .final h2{
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .final p{ margin: 0; opacity:.95; line-height:1.55; }
+    .sign{ margin-top: 10px; font-weight: 900; letter-spacing:.2px; }
+
+    /* Floating hearts */
+    .heart{
+      position: fixed;
+      left: 50%;
+      bottom: -24px;
+      z-index: 1;
+      pointer-events:none;
+      font-size: 18px;
+      opacity: 0.9;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,.25));
+      animation: floatUp linear forwards;
+    }
+    @keyframes floatUp{
+      from{ transform: translate(-50%, 0) scale(1); opacity:.95; }
+      to{ transform: translate(calc(-50% + var(--x)), calc(-100vh - 80px)) scale(var(--s)); opacity:0; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div style="opacity:.8; font-size:13px;">index.html</div>
+    <div class="title">Feliz 3 Años, Carito ❤️</div>
+    <div class="subtitle">Gracias por hacer mi vida más bonita desde el primer día.</div>
 
-<h1>Feliz 3 Años, Carito ❤️</h1>
-<p>Gracias por hacer mi vida más bonita desde el primer día.</p>
+    <div class="btns">
+      <button onclick="toggleLetter()">Abrir carta 💌</button>
+    </div>
 
-<button onclick="mostrarCarta()">Abrir carta 💌</button>
+    <div class="counters">
+      <div class="counterCard">
+        <div class="counterTop">
+          <span class="tag">💫 Desde que empezamos a salir (31/10/2022)</span>
+        </div>
+        <div class="counterValue" id="counter1">Cargando...</div>
+      </div>
 
-<div class="counter" id="fechas"></div>
+      <div class="counterCard">
+        <div class="counterTop">
+          <span class="tag">❤️ Desde que somos novios (12/03/2023)</span>
+        </div>
+        <div class="counterValue" id="counter2">Cargando...</div>
+      </div>
+    </div>
 
-<!-- GALERÍA -->
-<div class="gallery">
-    <img src="1c.jpg" onclick="openModal(this.src)">
-    <img src="2c.jpg" onclick="openModal(this.src)">
-    <img src="3c.jpg" onclick="openModal(this.src)">
-    <img src="4c.jpg" onclick="openModal(this.src)">
-    <img src="5c.jpg" onclick="openModal(this.src)">
-    <img src="6c.jpg" onclick="openModal(this.src)">
-    <img src="7c.jpg" onclick="openModal(this.src)">
-    <img src="8c.jpg" onclick="openModal(this.src)">
-    <img src="9c.jpg" onclick="openModal(this.src)">
-    <img src="10c.jpg" onclick="openModal(this.src)">
-    <img src="11c.jpg" onclick="openModal(this.src)">
-    <img src="12c.jpg" onclick="openModal(this.src)">
-    <img src="13c.jpg" onclick="openModal(this.src)">
-    <img src="14c.jpg" onclick="openModal(this.src)">
-    <img src="15c.jpg" onclick="openModal(this.src)">
-    <img src="16c.jpg" onclick="openModal(this.src)">
-    <img src="17c.jpg" onclick="openModal(this.src)">
-    <img src="18c.jpg" onclick="openModal(this.src)">
-    <img src="19c.jpg" onclick="openModal(this.src)">
-    <img src="20c.jpg" onclick="openModal(this.src)">
-    <img src="21c.jpg" onclick="openModal(this.src)">
-    <img src="22c.jpg" onclick="openModal(this.src)">
-    <img src="23c.jpg" onclick="openModal(this.src)">
-    <img src="24c.jpg" onclick="openModal(this.src)">
-    <img src="25c.jpg" onclick="openModal(this.src)">
-    <img src="26c.jpg" onclick="openModal(this.src)">
-    <img src="27c.jpg" onclick="openModal(this.src)">
-    <img src="28c.jpg" onclick="openModal(this.src)">
-    <img src="29c.jpg" onclick="openModal(this.src)">
-    <img src="30c.jpg" onclick="openModal(this.src)">
-</div>
+    <div class="letter" id="letterBox">
+Mi niña felices 3 años, es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti. No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba tener el privilegio de estar con esa niña tan hermosa, autentica y perfecta durante estos tres años. Contigo simplemente disfruto más mi vida, cosas tan simples como descansar, comer, ver una película, platicar, dormir, caminar, etc., haces que se sientan especial. A todo le das tu toque autentico y haces que lo disfrute más, te agradezco por estar 365 días más conmigo, que me imagino que no es fácil porque si soy un poco cadillo jajaja, pero espero y también eso haga que no te aburras. Poniéndonos un poco más serios, te quiero dar las gracias a ti por ser mi lugar seguro, un lugar en donde puedo ser yo y aunque a veces me cueste que sea un lugar en donde pueda expresar el cómo me siento, el solo verte a los ojos o sentir un abrazo tuyo hace que mis problemas dejen de verse como tal y en cambio los vea como una oportunidad de mejorar, porque si te tengo a ti a mi lado no necesito porque preocuparme. Contigo me siento pleno y seguro, no me canso de estar contigo y de poder compartir momentos inolvidables a tu lado, y sobre todo me encanta sentirme orgulloso de ti, de tu esfuerzo y dedicación que le pones a tus responsabilidades y actividades, me motiva el verte feliz haciendo cosas como ejercicio, trabajo, estudio, me llenas de orgullo el poder ver como todo lo que haces lo haces con 100 por ciento de esfuerzo y con ganas de superarte día a día. Eres la mujer de mis sueños, estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino, gracias niña por estos tres años y aunque llevemos dos años celebrando a distancia no serán nada a lado de los que celebraremos juntos en el futuro, te amo hoy y siempre.
 
-<!-- MODAL -->
-<div id="myModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImg">
-</div>
+— Jose Hugo ❤️
+    </div>
+  </div>
 
-<script>
+  <div class="galleryWrap">
+    <div class="galleryTitle">📸 Nuestros recuerdos</div>
+    <div class="gallery" id="gallery"></div>
+  </div>
 
-// Fechas
-function calcularFechas() {
-    const salir = new Date(2022, 9, 31); // 31/10/2022
-    const novios = new Date(2023, 2, 12); // 12/03/2023
-    const hoy = new Date();
+  <!-- Modal -->
+  <div class="modal" id="modal" onclick="closeModal(event)">
+    <button class="closeBtn" onclick="closeModal(event)">✕</button>
+    <div class="modalInner" onclick="event.stopPropagation()">
+      <button class="navBtn" onclick="prevPhoto()">‹</button>
+      <img class="modalImg" id="modalImg" alt="Foto" />
+      <button class="navBtn" onclick="nextPhoto()">›</button>
+    </div>
+  </div>
 
-    function diferencia(fecha) {
-        let años = hoy.getFullYear() - fecha.getFullYear();
-        let meses = hoy.getMonth() - fecha.getMonth();
-        let dias = hoy.getDate() - fecha.getDate();
+  <div class="final" id="final">
+    <div class="finalCard">
+      <h2>Gracias por estos 3 años ✨</h2>
+      <p>
+        Esto apenas empieza.  
+        Te amo hoy y siempre.
+      </p>
+      <div class="sign">— Jose Hugo ❤️</div>
+    </div>
+  </div>
 
-        if (dias < 0) {
-            meses--;
-            dias += 30;
-        }
-        if (meses < 0) {
-            años--;
-            meses += 12;
-        }
+  <script>
+    // ==========================
+    // 1) CONTADOR EN VIVO (exacto por calendario)
+    // ==========================
+    const dateSalir  = new Date(2022, 9, 31, 0, 0, 0); // 31/10/2022 (mes 9 = octubre)
+    const dateNovios = new Date(2023, 2, 12, 0, 0, 0); // 12/03/2023 (mes 2 = marzo)
 
-        return `${años} años, ${meses} meses, ${dias} días`;
+    function addMonths(d, months){
+      const nd = new Date(d);
+      const day = nd.getDate();
+      nd.setMonth(nd.getMonth() + months);
+
+      // Ajuste si el mes no tiene ese día (ej: 31)
+      while (nd.getDate() < day) nd.setDate(nd.getDate() - 1);
+      return nd;
     }
 
-    document.getElementById("fechas").innerHTML =
-        `💫 Desde que empezamos a salir (31/10/2022): ${diferencia(salir)}<br><br>
-         ❤️ Desde que somos novios (12/03/2023): ${diferencia(novios)}`;
-}
+    function diffCalendar(from, to){
+      // años
+      let years = to.getFullYear() - from.getFullYear();
+      let anchor = new Date(from);
+      anchor.setFullYear(from.getFullYear() + years);
 
-calcularFechas();
+      if(anchor > to){
+        years--;
+        anchor = new Date(from);
+        anchor.setFullYear(from.getFullYear() + years);
+      }
 
-// Carta
-function mostrarCarta() {
-    alert(`Mi niña felices 3 años... 
-Te amo hoy y siempre.
+      // meses (0..11)
+      let months = 0;
+      while(true){
+        const next = addMonths(anchor, months + 1);
+        if(next <= to) months++;
+        else break;
+      }
+      anchor = addMonths(anchor, months);
 
-- Jose Hugo ❤️`);
-}
+      // resto en ms
+      let ms = to - anchor;
+      const dayMs = 24*60*60*1000;
+      const hourMs = 60*60*1000;
+      const minMs = 60*1000;
 
-// Modal
-function openModal(src) {
-    document.getElementById("myModal").style.display = "block";
-    document.getElementById("modalImg").src = src;
-}
+      const days = Math.floor(ms / dayMs); ms -= days * dayMs;
+      const hours = Math.floor(ms / hourMs); ms -= hours * hourMs;
+      const minutes = Math.floor(ms / minMs); ms -= minutes * minMs;
+      const seconds = Math.floor(ms / 1000);
 
-function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-}
+      return { years, months, days, hours, minutes, seconds };
+    }
 
-</script>
+    function fmt(d){
+      return `${d.years} años, ${d.months} meses, ${d.days} días, ${d.hours} horas, ${d.minutes} min, ${d.seconds} seg`;
+    }
 
+    function tick(){
+      const now = new Date();
+      document.getElementById('counter1').textContent = fmt(diffCalendar(dateSalir, now));
+      document.getElementById('counter2').textContent = fmt(diffCalendar(dateNovios, now));
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // Carta
+    function toggleLetter(){
+      const box = document.getElementById('letterBox');
+      box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+      if(box.style.display === 'block'){
+        box.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    }
+
+    // ==========================
+    // 2) GALERÍA AUTOMÁTICA (edita SOLO esta lista)
+    // ==========================
+    // PON AQUÍ LOS NOMBRES EXACTOS DE TUS FOTOS EN EL REPO:
+    // Ejemplo: "1c.jpg", "10c.jpg", "10c.jpeg", etc.
+    const photos = [
+      "1c.jpg","2c.jpg","3c.jpg","4c.jpg","5c.jpg","6c.jpg","7c.jpg","8c.jpg","9c.jpg","10c.jpg","11c.jpg","12c.jpg","13c.jpg","14c.jpg","15c.jpg","16c.jpg","17c.jpg","18c.jpg","19c.jpg","20c.jpg","21c.jpg","22c.jpg","23c.jpg","24c.jpg","25c.jpg","26c.jpg","27c.jpg","28c.jpg","29c.jpg","30c.jpg",
+      // agrega las demás aquí EXACTAS:
+      // "5c.jpg","6c.jpg","7c.jpg","8c.jpg",
+      // "9c.jpg","10c.jpg", ...
+    ];
+
+    const gallery = document.getElementById('gallery');
+    let currentIndex = 0;
+
+    function buildGallery(){
+      gallery.innerHTML = "";
+      photos.forEach((src, i) => {
+        const card = document.createElement('div');
+        card.className = "shot";
+        card.innerHTML = `<img src="${src}" alt="foto ${i+1}" loading="lazy">`;
+        card.addEventListener('click', () => openModal(i));
+        gallery.appendChild(card);
+      });
+    }
+    buildGallery();
+
+    // Modal + navegación
+    function openModal(i){
+      currentIndex = i;
+      document.getElementById('modalImg').src = photos[currentIndex];
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal(e){
+      if(e) e.stopPropagation();
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function nextPhoto(){
+      currentIndex = (currentIndex + 1) % photos.length;
+      document.getElementById('modalImg').src = photos[currentIndex];
+    }
+
+    function prevPhoto(){
+      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+      document.getElementById('modalImg').src = photos[currentIndex];
+    }
+
+    // Teclado: esc, flechas
+    document.addEventListener('keydown', (e) => {
+      const open = document.getElementById('modal').style.display === 'flex';
+      if(!open) return;
+      if(e.key === 'Escape') closeModal(e);
+      if(e.key === 'ArrowRight') nextPhoto();
+      if(e.key === 'ArrowLeft') prevPhoto();
+    });
+
+    // ==========================
+    // 3) CORAZONES FLOTANDO (sutil)
+    // ==========================
+    const heartEmojis = ["❤️","💗","💖","💘","💕"];
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+      const x = (Math.random()*240 - 120).toFixed(0) + "px";
+      const s = (Math.random()*0.6 + 0.7).toFixed(2);
+      const dur = (Math.random()*3 + 4).toFixed(2) + "s";
+      h.style.setProperty('--x', x);
+      h.style.setProperty('--s', s);
+      h.style.animationDuration = dur;
+      h.style.left = (Math.random()*100).toFixed(2) + "%";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 8000);
+    }
+    // Un corazón cada ~700ms (sutil). Si lo quieres MÁS, baja el número.
+    setInterval(spawnHeart, 700);
+
+    // ==========================
+    // 4) FIRMA FINAL con fade-in al bajar
+    // ==========================
+    const final = document.getElementById('final');
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) final.classList.add('show');
+      })
+    }, { threshold: 0.2 });
+    obs.observe(final);
+  </script>
 </body>
 </html>
