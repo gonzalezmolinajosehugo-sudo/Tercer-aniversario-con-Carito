@@ -2,335 +2,193 @@ index.html
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Feliz 3 Años ❤️</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 Años con Carito ❤️</title>
 
-  <style>
-    :root{
-      --bg:#ffe6f0;
-      --card:#ffffffcc;
-      --txt:#1f1f1f;
-      --pink:#ff4d88;
-      --pink2:#cc0066;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #fff, var(--bg));
-      color:var(--txt);
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
-    .wrap{width:min(920px, 100%);}
+<style>
+body{
+margin:0;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#ff4d88,#6a0dad);
+color:white;
+text-align:center;
+padding:30px;
+overflow-x:hidden;
+}
 
-    .hero{
-      background: var(--card);
-      border:1px solid #ffffff70;
-      border-radius:22px;
-      padding:28px;
-      box-shadow:0 10px 30px rgba(0,0,0,.08);
-      overflow:hidden;
-      position:relative;
-      animation: pop .7s ease;
-    }
-    @keyframes pop{from{transform:translateY(12px); opacity:0}to{transform:translateY(0); opacity:1}}
-    .spark{
-      position:absolute; inset:-60px;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,77,136,.25), transparent 35%),
-        radial-gradient(circle at 80% 25%, rgba(204,0,102,.18), transparent 35%),
-        radial-gradient(circle at 30% 85%, rgba(255,77,136,.16), transparent 40%);
-      filter: blur(2px);
-      pointer-events:none;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+h1{font-size:40px;margin-bottom:10px;}
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:white;
+color:#ff4d88;
+font-weight:bold;
+cursor:pointer;
+margin:10px;
+}
 
-    h1{
-      margin:0 0 6px;
-      color:var(--pink2);
-      font-size: clamp(26px, 3.2vw, 40px);
-      text-align:center;
-    }
-    .sub{
-      text-align:center;
-      margin:0 0 18px;
-      font-size: 15px;
-      opacity:.85;
-    }
-    .grid{
-      display:grid;
-      gap:14px;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 780px){
-      .grid{grid-template-columns: 1.1fr .9fr;}
-    }
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:20px;
+}
 
-    .card{
-      background:#fff;
-      border-radius:18px;
-      padding:18px;
-      box-shadow:0 8px 22px rgba(0,0,0,.06);
-      border:1px solid #f3f3f3;
-    }
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
-    .btn{
-      background:var(--pink);
-      color:#fff;
-      border:0;
-      padding:12px 16px;
-      border-radius:14px;
-      cursor:pointer;
-      font-size:15px;
-      transition: transform .15s ease, filter .15s ease;
-    }
-    .btn:hover{transform:translateY(-1px); filter:brightness(1.02)}
-    .btn.outline{
-      background:#fff;
-      color:var(--pink2);
-      border:1px solid #ffd1e3;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      background:#fff5fa;
-      border:1px solid #ffd1e3;
-      font-size:14px;
-      justify-content:center;
-      width:100%;
-    }
+.gallery img{
+width:100%;
+border-radius:15px;
+cursor:pointer;
+transition:0.3s;
+}
 
-    .counter{
-      font-weight:bold;
-      color:var(--pink2);
-    }
+.gallery img:hover{
+transform:scale(1.05);
+}
 
-    .timeline li{margin:8px 0; line-height:1.35}
-    .timeline span{color:var(--pink2); font-weight:bold}
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+}
 
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:10px;
-    }
-    .gallery img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      border-radius:14px;
-      border:1px solid #f0f0f0;
-      transform: scale(1);
-      transition: transform .2s ease;
-    }
-    .gallery img:hover{transform: scale(1.02)}
-    @media (min-width: 780px){
-      .gallery{grid-template-columns: repeat(2, 1fr)}
-      .gallery img{height:210px}
-    }
+.modal img{
+max-width:80%;
+max-height:80%;
+border-radius:15px;
+}
 
-    .modal{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:10;
-    }
-    .modal.open{display:flex}
-    .modalBox{
-      width:min(780px, 100%);
-      background:#fff;
-      border-radius:18px;
-      padding:20px;
-      box-shadow:0 18px 60px rgba(0,0,0,.25);
-      animation: pop .2s ease;
-      position:relative;
-    }
-    .close{
-      position:absolute; right:12px; top:12px;
-      border:0; background:#fff5fa;
-      border:1px solid #ffd1e3;
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-      color:var(--pink2);
-      font-weight:bold;
-    }
-    .letter{
-      line-height:1.55;
-      font-size:16px;
-      white-space:pre-line;
-    }
-    .hint{font-size:12px; opacity:.75; text-align:center; margin-top:10px}
-  </style>
+.counter{
+margin-top:20px;
+font-size:18px;
+}
+
+#letterBox{
+display:none;
+background:white;
+color:#333;
+padding:20px;
+border-radius:15px;
+max-width:700px;
+margin:20px auto;
+text-align:left;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="hero">
-      <div class="spark"></div>
 
-      <!-- CAMBIA EL NOMBRE AQUÍ -->
-      <h1>Feliz 3 Años, mi amor ❤️</h1>
-      <p class="sub">Gracias por estos 3 años increíbles juntos.</p>
+<h1>Feliz 3 Años, Carito ❤️</h1>
+<p>Gracias por hacer mi vida más bonita desde el primer día.</p>
 
-      <div class="grid">
-        <div class="card">
-          <div class="pill">
-            ⏳ Llevamos juntos:
-            <span class="counter" id="counter">calculando…</span>
-          </div>
+<button onclick="toggleLetter()">Abrir carta 💌</button>
+<button onclick="toggleMusic()">Música 🎵</button>
 
-          <div style="height:12px"></div>
+<div class="counter">
+💫 Desde que empezamos a salir (31/10/2022):  
+<div id="counter1"></div>
+<br>
+❤️ Desde que somos novios (12/03/2023):  
+<div id="counter2"></div>
+</div>
 
-          <div class="row">
-            <button class="btn" id="btnLetter">Abrir carta 💌</button>
-            <button class="btn outline" id="btnSurprise">Sorpresa ✨</button>
-          </div>
+<div id="letterBox">
+Mi niña, felices 3 años.
 
-          <div style="height:14px"></div>
+Es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti.
 
-          <h3 style="margin:10px 0 8px; color:#cc0066">Nuestra historia</h3>
-          <ul class="timeline" style="margin:0; padding-left:18px">
-            <li><span>📍</span> El día que nos conocimos: (pon fecha/recuerdo)</li>
-            <li><span>☕</span> Nuestra primera cita: (pon lugar o detalle)</li>
-            <li><span>😂</span> Nuestro momento más chistoso: (pon uno)</li>
-            <li><span>❤️</span> Lo que más amo de ti: (pon algo real)</li>
-            <li><span>🌙</span> Lo que quiero para nosotros: (pon 1 línea)</li>
-          </ul>
+No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba a tener el privilegio de estar con esa niña tan hermosa, auténtica y perfecta durante estos tres años.
 
-          <div style="height:14px"></div>
+Contigo simplemente disfruto más mi vida. Cosas tan simples como descansar, comer, ver una película, platicar, dormir, caminar, etc., haces que se sientan especiales. A todo le das tu toque auténtico y haces que lo disfrute más.
 
-          <!-- MÚSICA: cambia el archivo si quieres -->
-          <div class="row">
-            <button class="btn outline" id="musicBtn">▶️ Música</button>
-            <span style="font-size:12px; opacity:.75; text-align:center">
-              (Tip: tu novia debe darle play por permiso del navegador)
-            </span>
-          </div>
+Te agradezco por estar 365 días más conmigo, que me imagino que no es fácil porque sí soy un poco cadillo jajaja, pero espero que también eso haga que no te aburras.
 
-          <audio id="song" preload="auto">
-            <!-- OPCIÓN A: deja esto vacío y luego subimos un mp3 a GitHub -->
-            <!-- <source src="song.mp3" type="audio/mpeg"> -->
-          </audio>
+Poniéndonos un poco más serios, te quiero dar las gracias a ti por ser mi lugar seguro; un lugar en donde puedo ser yo. Y aunque a veces me cueste expresar cómo me siento, el solo verte a los ojos o sentir un abrazo tuyo hace que mis problemas dejen de verse como tal y en cambio los vea como una oportunidad de mejorar.
 
-          <div class="hint">Si quieres, luego lo dejamos con fotos + música de fondo bien pro.</div>
-        </div>
+Contigo me siento pleno y seguro. No me canso de estar contigo y de poder compartir momentos inolvidables a tu lado.
 
-        <div class="card">
-          <h3 style="margin:0 0 10px; color:#cc0066">Fotos nuestras 📸</h3>
+Eres la mujer de mis sueños. Estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino.
 
-          <!-- FOTOS: primero subimos imágenes a una carpeta "fotos" -->
-          <div class="gallery">
-            <img src="https://images.unsplash.com/photo-1520975958225-4d01a2b2fd8f?auto=format&fit=crop&w=900&q=60" alt="foto 1">
-            <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=900&q=60" alt="foto 2">
-            <img src="https://images.unsplash.com/photo-1520975869018-6a4b4e0b5aa6?auto=format&fit=crop&w=900&q=60" alt="foto 3">
-            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=900&q=60" alt="foto 4">
-          </div>
+Te amo hoy y siempre ❤️
 
-          <div class="hint">Luego cambiamos estas por fotos reales de ustedes.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+— Jose Hugo
+</div>
 
-  <!-- MODAL CARTA -->
-  <div class="modal" id="modal">
-    <div class="modalBox">
-      <button class="close" id="close">X</button>
-      <h2 style="margin:0 0 10px; color:#cc0066">Para ti 💖</h2>
+<div class="gallery">
+<img src="fotos/1c.jpg" onclick="openModal(this.src)">
+<img src="fotos/2c.jpg" onclick="openModal(this.src)">
+<img src="fotos/3c.jpg" onclick="openModal(this.src)">
+<img src="fotos/4c.jpg" onclick="openModal(this.src)">
+</div>
 
-      <!-- CAMBIA LA CARTA AQUÍ -->
-      <div class="letter" id="letter">
-Gracias por estos 3 años.
-Gracias por estar, por cuidarme, por reír conmigo y por hacer mi vida más bonita.
+<div class="modal" id="modal" onclick="closeModal()">
+<img id="modalImg">
+</div>
 
-Si tuviera que elegir otra vez, te elegiría a ti.
-Hoy, mañana y siempre.
+<audio id="music">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
 
-Te amo ❤️
-      </div>
+<script>
+function calculateTime(startDate){
+const now = new Date();
+let years = now.getFullYear() - startDate.getFullYear();
+let months = now.getMonth() - startDate.getMonth();
+let days = now.getDate() - startDate.getDate();
 
-      <div class="hint">Tip: puedes poner aquí una frase interna de ustedes y queda 10/10.</div>
-    </div>
-  </div>
+if(days < 0){
+months--;
+days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+}
+if(months < 0){
+years--;
+months += 12;
+}
 
-  <script>
-    // ✅ CAMBIA LA FECHA AQUÍ (AÑO, MES-1, DÍA)
-    // Ejemplo: 2023-02-14 => new Date(2023, 1, 14)
-    const startDate = new Date(2023, 0, 1); // <-- CAMBIA ESTO
+return years + " años, " + months + " meses, " + days + " días";
+}
 
-    function updateCounter(){
-      const now = new Date();
-      let diff = now - startDate;
+function updateCounters(){
+document.getElementById("counter1").innerHTML =
+calculateTime(new Date(2022,9,31));
 
-      const sec = Math.floor(diff / 1000);
-      const min = Math.floor(sec / 60);
-      const hr  = Math.floor(min / 60);
-      const day = Math.floor(hr / 24);
+document.getElementById("counter2").innerHTML =
+calculateTime(new Date(2023,2,12));
+}
 
-      // Aproximación bonita: años/meses/días
-      let years = now.getFullYear() - startDate.getFullYear();
-      let months = now.getMonth() - startDate.getMonth();
-      let days = now.getDate() - startDate.getDate();
+updateCounters();
 
-      if(days < 0){
-        months--;
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-        days += prevMonth;
-      }
-      if(months < 0){
-        years--;
-        months += 12;
-      }
+function toggleLetter(){
+const box = document.getElementById("letterBox");
+box.style.display = box.style.display === "block" ? "none" : "block";
+}
 
-      document.getElementById("counter").textContent =
-        `${years} años, ${months} meses y ${days} días (${day} días totales)`;
-    }
-    updateCounter();
-    setInterval(updateCounter, 1000 * 10);
+function openModal(src){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImg").src=src;
+}
 
-    // Modal carta
-    const modal = document.getElementById("modal");
-    document.getElementById("btnLetter").onclick = () => modal.classList.add("open");
-    document.getElementById("close").onclick = () => modal.classList.remove("open");
-    modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("open"); });
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
 
-    // Sorpresa
-    document.getElementById("btnSurprise").onclick = () => {
-      alert("Sorpresa: te debo un beso (o muchos) en cuanto te vea 😌💖");
-    };
+function toggleMusic(){
+const music=document.getElementById("music");
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+}
+</script>
 
-    // Música play/pause
-    const song = document.getElementById("song");
-    const musicBtn = document.getElementById("musicBtn");
-    let playing = false;
-
-    musicBtn.onclick = async () => {
-      try{
-        if(!playing){
-          await song.play();
-          playing = true;
-          musicBtn.textContent = "⏸️ Pausar música";
-        }else{
-          song.pause();
-          playing = false;
-          musicBtn.textContent = "▶️ Música";
-        }
-      }catch(err){
-        alert("Tu navegador bloqueó el autoplay. Intenta otra vez y asegúrate de tener un archivo de música cargado 🙂");
-      }
-    };
-  </script>
 </body>
 </html>
+
