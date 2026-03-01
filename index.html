@@ -2,213 +2,160 @@ JH & C
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz 3 Años Carito ❤️</title>
 
 <style>
-:root{
-  --pink:#ff4da6;
-  --purple:#7a00cc;
-  --wine:#c1005b;
-}
-
 body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  text-align:center;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  color:white;
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+    background:linear-gradient(135deg,#ff4da6,#7a00cc);
+    color:white;
 }
 
-/* INTRO WOW */
+/* INTRO */
 #intro{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-  padding:20px;
+    position:fixed;
+    inset:0;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
 }
-#intro h2{ margin:0 0 10px; }
-#intro p{ margin:0; opacity:.9; }
 #intro button{
-  margin-top:22px;
-  padding:12px 26px;
-  border:none;
-  border-radius:30px;
-  background:white;
-  color:var(--wine);
-  font-weight:700;
-  cursor:pointer;
-  transition:.25s;
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#c1005b;
+    font-weight:bold;
+    cursor:pointer;
 }
-#intro button:hover{ transform:scale(1.05); }
 
-/* TITULO */
-h1{
-  margin-top:40px;
-  font-size:42px;
-}
-p{ margin:8px 0; }
+h1{margin-top:40px;}
 
-/* BOTON */
 .btn{
-  background:white;
-  color:var(--wine);
-  border:none;
-  padding:12px 24px;
-  border-radius:30px;
-  font-weight:700;
-  cursor:pointer;
-  margin:12px 10px;
-  transition:.25s;
+    background:white;
+    color:#c1005b;
+    border:none;
+    padding:12px 24px;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
 }
-.btn:hover{ transform:scale(1.05); }
 
-/* CONTADOR */
 #contador{
-  font-size:20px;
-  margin:16px 0 8px;
-  font-weight:800;
-}
-
-/* SECCIONES */
-.section-title{
-  margin:26px 0 14px;
-  font-size:26px;
+    font-size:20px;
+    margin:15px;
+    font-weight:bold;
 }
 
 /* GALERIA */
 .gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:40px;
 }
 .gallery img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:20px;
-  cursor:pointer;
-  transition:.25s;
-  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:20px;
+    cursor:pointer;
 
-  /* fade-in base */
-  opacity:0;
-  transform:translateY(18px) scale(0.98);
-}
-.gallery img:hover{
-  transform:translateY(0) scale(1.03);
+    opacity:0;
+    transform:translateY(20px);
 }
 .gallery img.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-  transition:opacity .8s ease, transform .8s ease;
+    opacity:1;
+    transform:translateY(0);
+    transition:all .8s ease;
 }
 
 /* VIDEO */
 .video-box{
-  width:min(900px,95%);
-  margin:0 auto 30px;
+    width:min(900px,95%);
+    margin:auto;
 }
 .video-box iframe{
-  width:100%;
-  height:500px;
-  border-radius:20px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.35);
-  border:0;
+    width:100%;
+    height:500px;
+    border-radius:20px;
 }
 
-/* MODAL FOTO */
+/* MODALS */
 .modalImg{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  z-index:998;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
 .modalImg img{
-  max-width:92%;
-  max-height:92%;
-  border-radius:18px;
+    max-width:90%;
+    max-height:90%;
 }
 
-/* MODAL CARTA */
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:998;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
 }
-.modal.show{ display:flex; }
+.modal.show{display:flex;}
 
 .modal-card{
-  background:white;
-  color:#333;
-  width:min(800px,95%);
-  max-height:80vh;
-  overflow:auto;
-  border-radius:20px;
-  padding:25px;
-  text-align:left;
-  box-shadow:0 10px 28px rgba(0,0,0,0.35);
-}
-.modal-card h2{
-  color:var(--wine);
-  margin-top:0;
+    background:white;
+    color:#333;
+    width:min(800px,95%);
+    max-height:80vh;
+    overflow:auto;
+    border-radius:20px;
+    padding:25px;
+    text-align:left;
 }
 
 .close-btn{
-  float:right;
-  cursor:pointer;
-  font-weight:900;
-  font-size:18px;
-  color:#333;
+    float:right;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 .firma{
-  text-align:right;
-  font-weight:900;
-  margin-top:15px;
-  color:var(--wine);
+    text-align:right;
+    color:#c1005b;
+    font-weight:bold;
 }
 
-/* texto carta con saltos bonitos */
 #letterText{
-  white-space:pre-wrap;
-  line-height:1.5;
-}
-
-/* responsive */
-@media (max-width:600px){
-  h1{ font-size:34px; }
-  .video-box iframe{ height:360px; }
-  .gallery{ padding:26px; gap:14px; }
-  .gallery img{ height:220px; }
+    white-space:pre-wrap;
+    line-height:1.5;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO WOW -->
+<!-- INTRO -->
 <div id="intro">
-  <h2>Antes de empezar… ❤️</h2>
-  <p>Esto es solo para ti, Carito</p>
-  <button onclick="entrar()">Entrar ✨</button>
+<h2>Antes de empezar… ❤️</h2>
+<p>Esto es solo para ti, Carito</p>
+<button onclick="entrar()">Entrar ✨</button>
 </div>
+
+<!-- MUSICA -->
+<audio id="musica" loop>
+  <source src="cancion.mp3" type="audio/mpeg">
+</audio>
 
 <h1>Feliz 3 Años, Carito ❤️</h1>
 <p>Gracias por hacer mi vida más bonita desde el primer día.</p>
@@ -221,93 +168,88 @@ p{ margin:8px 0; }
 <p>❤️ Desde que somos novios (12/03/2023)</p>
 
 <!-- GALERIA -->
-<h2 class="section-title">Nuestras fotos 📸❤️</h2>
 <div class="gallery">
-  <img src="1c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="2c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="3c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="4c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="5c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="6c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="7c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="8c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="9c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="10c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="11c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="12c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="13c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="14c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="15c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="16c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="17c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="18c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="19c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="20c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="21c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="22c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="23c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="24c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="25c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="26c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="27c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="28c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="29c.jpg" onclick="openModal(this.src)" class="fade">
-  <img src="30c.jpg" onclick="openModal(this.src)" class="fade">
+<img src="1c.jpg" onclick="openModal(this.src)">
+<img src="2c.jpg" onclick="openModal(this.src)">
+<img src="3c.jpg" onclick="openModal(this.src)">
+<img src="4c.jpg" onclick="openModal(this.src)">
+<img src="5c.jpg" onclick="openModal(this.src)">
+<img src="6c.jpg" onclick="openModal(this.src)">
+<img src="7c.jpg" onclick="openModal(this.src)">
+<img src="8c.jpg" onclick="openModal(this.src)">
+<img src="9c.jpg" onclick="openModal(this.src)">
+<img src="10c.jpg" onclick="openModal(this.src)">
+<img src="11c.jpg" onclick="openModal(this.src)">
+<img src="12c.jpg" onclick="openModal(this.src)">
+<img src="13c.jpg" onclick="openModal(this.src)">
+<img src="14c.jpg" onclick="openModal(this.src)">
+<img src="15c.jpg" onclick="openModal(this.src)">
+<img src="16c.jpg" onclick="openModal(this.src)">
+<img src="17c.jpg" onclick="openModal(this.src)">
+<img src="18c.jpg" onclick="openModal(this.src)">
+<img src="19c.jpg" onclick="openModal(this.src)">
+<img src="20c.jpg" onclick="openModal(this.src)">
+<img src="21c.jpg" onclick="openModal(this.src)">
+<img src="22c.jpg" onclick="openModal(this.src)">
+<img src="23c.jpg" onclick="openModal(this.src)">
+<img src="24c.jpg" onclick="openModal(this.src)">
+<img src="25c.jpg" onclick="openModal(this.src)">
+<img src="26c.jpg" onclick="openModal(this.src)">
+<img src="27c.jpg" onclick="openModal(this.src)">
+<img src="28c.jpg" onclick="openModal(this.src)">
+<img src="29c.jpg" onclick="openModal(this.src)">
+<img src="30c.jpg" onclick="openModal(this.src)">
 </div>
 
-<!-- VIDEO (DESPUÉS) -->
-<h2 class="section-title">Nuestro video ❤️</h2>
+<!-- VIDEO -->
+<h2>Nuestro video ❤️</h2>
 <div class="video-box">
-  <iframe
-    src="https://www.youtube.com/embed/CZZmJCj-fuo"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
+<iframe src="https://www.youtube.com/embed/CZZmJCj-fuo"
+allowfullscreen></iframe>
 </div>
 
 <!-- MODAL FOTO -->
 <div class="modalImg" id="modalImg" onclick="closeModal()">
-  <img id="imgGrande" alt="Foto grande" />
+<img id="imgGrande">
 </div>
 
 <!-- MODAL CARTA -->
 <div id="letterModal" class="modal">
-  <div class="modal-card">
-    <span class="close-btn" onclick="closeLetter()">✕</span>
-    <h2>Para ti, Carito ❤️</h2>
-    <div id="letterText"></div>
-    <div class="firma">— Jose Hugo ❤️</div>
-  </div>
+<div class="modal-card">
+<span class="close-btn" onclick="closeLetter()">✕</span>
+<h2>Para ti ❤️</h2>
+<div id="letterText"></div>
+<div class="firma">— Jose Hugo ❤️</div>
+</div>
 </div>
 
 <script>
-/* INTRO */
+
+/* INTRO + MUSICA */
 function entrar(){
-  document.getElementById("intro").style.display="none";
+document.getElementById("intro").style.display="none";
+document.getElementById("musica").play();
 }
 
-/* CONTADOR EN VIVO (desde que son novios: 12/03/2023) */
+/* CONTADOR EN VIVO */
 function actualizarContador(){
-  const inicio = new Date("2023-03-12T00:00:00");
-  const ahora = new Date();
-  let diff = ahora - inicio;
+const inicio=new Date("2023-03-12T00:00:00");
+const ahora=new Date();
+const diff=ahora-inicio;
 
-  if(diff < 0) diff = 0;
+const dias=Math.floor(diff/(1000*60*60*24));
+const horas=Math.floor((diff/(1000*60*60))%24);
+const mins=Math.floor((diff/(1000*60))%60);
+const segs=Math.floor((diff/1000)%60);
 
-  const totalSeg = Math.floor(diff / 1000);
-  const dias = Math.floor(totalSeg / (3600*24));
-  const horas = Math.floor((totalSeg % (3600*24)) / 3600);
-  const mins  = Math.floor((totalSeg % 3600) / 60);
-  const segs  = totalSeg % 60;
-
-  document.getElementById("contador").innerHTML =
-    `⏳ Llevamos juntos: ${dias} días, ${horas}h ${mins}m ${segs}s ❤️`;
+document.getElementById("contador").innerHTML=
+`⏳ Llevamos juntos: ${dias} días ${horas}h ${mins}m ${segs}s ❤️`;
 }
-setInterval(actualizarContador, 1000);
+setInterval(actualizarContador,1000);
 actualizarContador();
 
-/* CARTA COMPLETA + EFECTO MAQUINA */
-const CARTA = `Mi niña felices 3 años, es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti.
+/* CARTA COMPLETA */
+const CARTA=`Mi niña felices 3 años, es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti.
 
 No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba tener el privilegio de estar con esa niña tan hermosa, autentica y perfecta durante estos tres años.
 
@@ -319,57 +261,46 @@ Contigo me siento pleno y seguro, no me canso de estar contigo y de poder compar
 
 Eres la mujer de mis sueños, estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino, gracias niña por estos tres años y aunque llevemos dos años celebrando a distancia no serán nada a lado de los que celebraremos juntos en el futuro, te amo hoy y siempre.`;
 
-let typingTimer = null;
-
 function abrirCarta(){
-  document.getElementById("letterModal").classList.add("show");
+document.getElementById("letterModal").classList.add("show");
+let i=0;
+let txt="";
+const target=document.getElementById("letterText");
 
-  const target = document.getElementById("letterText");
-  target.textContent = "";
-
-  if(typingTimer) clearInterval(typingTimer);
-
-  let i = 0;
-  const speed = 18; // 15-35 recomendado
-
-  typingTimer = setInterval(() => {
-    target.textContent += CARTA.charAt(i);
-    i++;
-    if(i >= CARTA.length){
-      clearInterval(typingTimer);
-      typingTimer = null;
-    }
-  }, speed);
+const timer=setInterval(()=>{
+txt+=CARTA.charAt(i);
+target.textContent=txt;
+i++;
+if(i>=CARTA.length) clearInterval(timer);
+},18);
 }
 
 function closeLetter(){
-  document.getElementById("letterModal").classList.remove("show");
-  if(typingTimer) clearInterval(typingTimer);
-  typingTimer = null;
+document.getElementById("letterModal").classList.remove("show");
 }
 
-/* GALERIA MODAL */
+/* GALERIA */
 function openModal(src){
-  document.getElementById("imgGrande").src = src;
-  document.getElementById("modalImg").style.display="flex";
+document.getElementById("imgGrande").src=src;
+document.getElementById("modalImg").style.display="flex";
 }
 function closeModal(){
-  document.getElementById("modalImg").style.display="none";
+document.getElementById("modalImg").style.display="none";
 }
 
-/* FADE-IN AL HACER SCROLL (IntersectionObserver) */
-const imgs = document.querySelectorAll(".gallery img");
+/* FADE IN FOTOS */
+const imgs=document.querySelectorAll(".gallery img");
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+}
+});
+},{threshold:0.15});
 
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-      obs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
+imgs.forEach(img=>observer.observe(img));
 
-imgs.forEach(img => obs.observe(img));
 </script>
 
 </body>
