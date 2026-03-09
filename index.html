@@ -8,180 +8,199 @@ JH & C
 
 <style>
 body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-text-align:center;
-background:linear-gradient(135deg,#ff4da6,#7a00cc);
-color:white;
-overflow-x:hidden;
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+    background:linear-gradient(135deg,#ff4da6,#7a00cc);
+    color:white;
+    opacity:0;
+    transition:opacity 1.2s ease;
 }
 
-/* CORAZONES */
-.heart{
-position:fixed;
-top:-10px;
-color:#ffb6d9;
-animation:fall linear forwards;
-font-size:20px;
-pointer-events:none;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh);
-opacity:0;
-}
+body.show-page{
+    opacity:1;
 }
 
 /* INTRO */
 #intro{
-position:fixed;
-inset:0;
-background:black;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:999;
+    position:fixed;
+    inset:0;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    transition:opacity 1s ease;
 }
-
+#intro.fade-out{
+    opacity:0;
+    pointer-events:none;
+}
 #intro button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:white;
-color:#c1005b;
-font-weight:bold;
-cursor:pointer;
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#c1005b;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 h1{margin-top:40px;}
 
 .btn{
-background:white;
-color:#c1005b;
-border:none;
-padding:12px 24px;
-border-radius:30px;
-cursor:pointer;
-margin:10px;
-font-weight:bold;
+    background:white;
+    color:#c1005b;
+    border:none;
+    padding:12px 24px;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    font-weight:bold;
 }
 
-/* CONTADOR */
 #contador{
-font-size:20px;
-margin:15px;
-font-weight:bold;
+    font-size:20px;
+    margin:15px;
+    font-weight:bold;
+}
+
+/* LO QUE MAS AMO DE TI */
+.love-box{
+    width:min(800px,92%);
+    margin:20px auto;
+    background:rgba(255,255,255,0.14);
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.18);
+}
+.love-box h2{
+    margin-top:0;
+    margin-bottom:10px;
+}
+#fraseAmor{
+    font-size:24px;
+    font-weight:bold;
+    min-height:36px;
+    transition:opacity .5s ease, transform .5s ease;
+}
+.fade-frase{
+    opacity:0;
+    transform:translateY(8px);
 }
 
 /* GALERIA */
 .gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-padding:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:40px;
 }
-
 .gallery img{
-width:100%;
-height:260px;
-object-fit:cover;
-border-radius:20px;
-cursor:pointer;
-opacity:0;
-transform:translateY(20px);
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:20px;
+    cursor:pointer;
+    opacity:0;
+    transform:translateY(20px);
 }
-
 .gallery img.show{
-opacity:1;
-transform:translateY(0);
-transition:all .8s ease;
+    opacity:1;
+    transform:translateY(0);
+    transition:all .8s ease;
 }
 
 /* VIDEO */
 .video-box{
-width:min(900px,95%);
-margin:auto;
+    width:min(900px,95%);
+    margin:auto;
 }
-
 .video-box iframe{
-width:100%;
-height:500px;
-border-radius:20px;
+    width:100%;
+    height:500px;
+    border-radius:20px;
 }
 
-/* MODAL FOTO */
+/* MODALS */
 .modalImg{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
-
 .modalImg img{
-max-width:90%;
-max-height:90%;
+    max-width:90%;
+    max-height:90%;
 }
 
-/* SOBRE CARTA */
-#envelopeContainer{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.6);
-display:none;
-justify-content:center;
-align-items:center;
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+.modal.show{display:flex;}
+
+.modal-card{
+    background:white;
+    color:#333;
+    width:min(800px,95%);
+    max-height:80vh;
+    overflow:auto;
+    border-radius:20px;
+    padding:25px;
+    text-align:left;
 }
 
-.envelope{
-width:300px;
-height:200px;
-background:white;
-position:relative;
-cursor:pointer;
-border-radius:10px;
-}
-
-.flap{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#ff9ac9;
-clip-path:polygon(0 0,100% 0,50% 60%);
-transition:transform .8s;
-transform-origin:top;
-}
-
-.letter{
-position:absolute;
-top:10px;
-left:10px;
-right:10px;
-bottom:10px;
-background:white;
-padding:15px;
-overflow:auto;
-display:none;
-color:#333;
+.close-btn{
+    float:right;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 .firma{
-text-align:right;
-color:#c1005b;
-font-weight:bold;
+    text-align:right;
+    color:#c1005b;
+    font-weight:bold;
 }
 
 #letterText{
-white-space:pre-wrap;
-line-height:1.5;
+    white-space:pre-wrap;
+    line-height:1.5;
 }
 
+/* MENSAJE FINAL */
+.final-message{
+    width:min(850px,92%);
+    margin:50px auto 60px;
+    padding:28px;
+    background:rgba(255,255,255,0.14);
+    border-radius:24px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.18);
+}
+.final-message h2{
+    margin-top:0;
+    font-size:30px;
+}
+.final-message p{
+    font-size:20px;
+    line-height:1.6;
+    margin-bottom:0;
+}
+
+@media (max-width:600px){
+    h1{ font-size:34px; }
+    .video-box iframe{ height:360px; }
+    #fraseAmor{ font-size:20px; }
+    .final-message p{ font-size:18px; }
+}
 </style>
 </head>
 
@@ -196,7 +215,7 @@ line-height:1.5;
 
 <!-- MUSICA -->
 <audio id="musica" loop>
-<source src="cancion.mp3.mp3" type="audio/mpeg">
+<source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
 <h1>Feliz 3 Años, Carito ❤️</h1>
@@ -205,10 +224,16 @@ line-height:1.5;
 <div id="contador"></div>
 
 <button class="btn" onclick="toggleMusica()" id="btnMusica">🎵 Música</button>
-<button class="btn" onclick="abrirSobre()">Abrir carta 💌</button>
+<button class="btn" onclick="abrirCarta()">Abrir carta 💌</button>
 
 <p>💫 Desde que empezamos a salir (31/10/2022)</p>
 <p>❤️ Desde que somos novios (12/03/2023)</p>
+
+<!-- LO QUE MAS AMO DE TI -->
+<div class="love-box">
+<h2>Lo que más amo de ti ❤️</h2>
+<div id="fraseAmor">Tu forma de hacer mi vida más bonita.</div>
+</div>
 
 <!-- GALERIA -->
 <div class="gallery">
@@ -244,27 +269,36 @@ line-height:1.5;
 <img src="30c.jpg" onclick="openModal(this.src)">
 </div>
 
+<!-- VIDEO -->
 <h2>Nuestro video ❤️</h2>
-
 <div class="video-box">
 <iframe id="ytvideo"
 src="https://www.youtube.com/embed/CZZmJCj-fuo?enablejsapi=1"
 allowfullscreen></iframe>
 </div>
 
-<!-- MODAL FOTO -->
+<!-- MENSAJE FINAL -->
+<div class="final-message">
+<h2>Gracias por estos 3 años ❤️</h2>
+<p>
+Gracias por cada risa, cada abrazo, cada momento bonito y por hacerme sentir tan afortunado de tenerte en mi vida.
+Esto es solo una pequeña forma de recordarte lo mucho que te amo, lo orgulloso que estoy de ti y lo feliz que soy contigo.
+Y aunque ahora nos toque celebrar a distancia, sé que todo lo mejor que viene lo vamos a vivir juntos.
+Te amo hoy, mañana y siempre. ❤️
+</p>
+</div>
+
+<!-- MODALS -->
 <div class="modalImg" id="modalImg" onclick="closeModal()">
 <img id="imgGrande">
 </div>
 
-<!-- SOBRE CARTA -->
-<div id="envelopeContainer">
-<div class="envelope" onclick="abrirCarta()">
-<div class="flap" id="flap"></div>
-<div class="letter" id="letter">
+<div id="letterModal" class="modal">
+<div class="modal-card">
+<span class="close-btn" onclick="closeLetter()">✕</span>
+<h2>Para ti ❤️</h2>
 <div id="letterText"></div>
 <div class="firma">— Jose Hugo ❤️</div>
-</div>
 </div>
 </div>
 
@@ -272,62 +306,50 @@ allowfullscreen></iframe>
 
 <script>
 
-/* CORAZONES */
-setInterval(()=>{
-const heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(3+Math.random()*4)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),7000);
-},300);
-
 /* INTRO */
 function entrar(){
-document.getElementById("intro").style.display="none";
-document.getElementById("musica").play();
+const intro = document.getElementById("intro");
+intro.classList.add("fade-out");
+
+document.body.classList.add("show-page");
+
+const musica = document.getElementById("musica");
+musica.play().catch(()=>{});
+
+setTimeout(()=>{
+intro.style.display="none";
+},1000);
 }
 
-/* CONTADOR MEJORADO */
+window.addEventListener("load", ()=>{
+document.body.classList.add("show-page");
+});
+
+/* CONTADOR */
 function actualizarContador(){
 const inicio=new Date("2023-03-12");
 const ahora=new Date();
-let diff=ahora-inicio;
+const diff=ahora-inicio;
 
-const years=Math.floor(diff/(1000*60*60*24*365));
-diff-=years*1000*60*60*24*365;
-
-const months=Math.floor(diff/(1000*60*60*24*30));
-diff-=months*1000*60*60*24*30;
-
-const days=Math.floor(diff/(1000*60*60*24));
-diff-=days*1000*60*60*24;
-
-const hours=Math.floor(diff/(1000*60*60));
-diff-=hours*1000*60*60;
-
-const mins=Math.floor(diff/(1000*60));
-diff-=mins*1000*60;
-
-const segs=Math.floor(diff/1000);
+const dias=Math.floor(diff/(1000*60*60*24));
+const horas=Math.floor((diff/(1000*60*60))%24);
+const mins=Math.floor((diff/(1000*60))%60);
+const segs=Math.floor((diff/1000)%60);
 
 document.getElementById("contador").innerHTML=
-`⏳ ${years} años ${months} meses ${days} días ${hours}h ${mins}m ${segs}s ❤️`;
+`⏳ Llevamos juntos: ${dias} días ${horas}h ${mins}m ${segs}s ❤️`;
 }
-
 setInterval(actualizarContador,1000);
 actualizarContador();
 
-/* MUSICA */
+/* MUSICA BOTON */
 let reproduciendo=false;
-
 function toggleMusica(){
 const m=document.getElementById("musica");
 const btn=document.getElementById("btnMusica");
 
 if(!reproduciendo){
-m.play();
+m.play().catch(()=>{});
 btn.innerText="⏸️ Pausar música";
 reproduciendo=true;
 }else{
@@ -337,19 +359,37 @@ reproduciendo=false;
 }
 }
 
-/* CARTA */
+/* FRASES */
+const frasesAmor = [
+"Tu forma de hacer mi vida más bonita.",
+"Tu sonrisa que siempre me da paz.",
+"Lo auténtica y especial que eres.",
+"Lo orgulloso que me haces sentir de ti.",
+"La tranquilidad que siento cuando estoy contigo.",
+"Tu manera de hacer especiales hasta los momentos más simples.",
+"Todo lo que eres y todo lo que me haces sentir.",
+"Que contigo todo se disfruta más."
+];
+
+let indiceFrase = 0;
+const fraseEl = document.getElementById("fraseAmor");
+
+function cambiarFrase(){
+fraseEl.classList.add("fade-frase");
+
+setTimeout(() => {
+indiceFrase = (indiceFrase + 1) % frasesAmor.length;
+fraseEl.textContent = frasesAmor[indiceFrase];
+fraseEl.classList.remove("fade-frase");
+}, 400);
+}
+setInterval(cambiarFrase, 3000);
+
+/* CARTA COMPLETA */
 const CARTA=`Mi niña felices 3 años, es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti. No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba tener el privilegio de estar con esa niña tan hermosa, autentica y perfecta durante estos tres años. Contigo simplemente disfruto más mi vida, cosas tan simples como descansar, comer, ver una película, platicar, dormir, caminar, etc., haces que se sientan especial. A todo le das tu toque autentico y haces que lo disfrute más, te agradezco por estar 365 días más conmigo, que me imagino que no es fácil porque si soy un poco cadillo jajaja, pero espero y también eso haga que no te aburras. Poniéndonos un poco más serios, te quiero dar las gracias a ti por ser mi lugar seguro, un lugar en donde puedo ser yo y aunque a veces me cueste que sea un lugar en donde pueda expresar el cómo me siento, el solo verte a los ojos o sentir un abrazo tuyo hace que mis problemas dejen de verse como tal y en cambio los vea como una oportunidad de mejorar, porque si te tengo a ti a mi lado no necesito porque preocuparme. Contigo me siento pleno y seguro, no me canso de estar contigo y de poder compartir momentos inolvidables a tu lado, y sobre todo me encanta sentirme orgulloso de ti, de tu esfuerzo y dedicación que le pones a tus responsabilidades y actividades, me motiva el verte feliz haciendo cosas como ejercicio, trabajo, estudio, me llenas de orgullo el poder ver como todo lo que haces lo haces con 100 por ciento de esfuerzo y con ganas de superarte día a día. Eres la mujer de mis sueños, estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino, gracias niña por estos tres años y aunque llevemos dos años celebrando a distancia no serán nada a lado de los que celebraremos juntos en el futuro, te amo hoy y siempre.`;
 
-/* SOBRE */
-function abrirSobre(){
-document.getElementById("envelopeContainer").style.display="flex";
-}
-
 function abrirCarta(){
-document.getElementById("flap").style.transform="rotateX(180deg)";
-const letter=document.getElementById("letter");
-letter.style.display="block";
-
+document.getElementById("letterModal").classList.add("show");
 let i=0;
 let txt="";
 const target=document.getElementById("letterText");
@@ -361,20 +401,21 @@ i++;
 if(i>=CARTA.length) clearInterval(timer);
 },15);
 }
+function closeLetter(){
+document.getElementById("letterModal").classList.remove("show");
+}
 
 /* MODAL FOTOS */
 function openModal(src){
 document.getElementById("imgGrande").src=src;
 document.getElementById("modalImg").style.display="flex";
 }
-
 function closeModal(){
 document.getElementById("modalImg").style.display="none";
 }
 
 /* FADE FOTOS */
 const imgs=document.querySelectorAll(".gallery img");
-
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -383,8 +424,22 @@ observer.unobserve(entry.target);
 }
 });
 });
-
 imgs.forEach(i=>observer.observe(i));
+
+/* PAUSAR MUSICA SI VIDEO SUENA */
+let player;
+function onYouTubeIframeAPIReady(){
+player=new YT.Player('ytvideo',{
+events:{'onStateChange':onPlayerStateChange}
+});
+}
+function onPlayerStateChange(event){
+if(event.data==1){
+document.getElementById("musica").pause();
+reproduciendo=false;
+document.getElementById("btnMusica").innerText="🎵 Música";
+}
+}
 
 </script>
 
