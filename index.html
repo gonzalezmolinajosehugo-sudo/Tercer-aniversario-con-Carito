@@ -13,12 +13,6 @@ body{
     text-align:center;
     background:linear-gradient(135deg,#ff4da6,#7a00cc);
     color:white;
-    opacity:0;
-    transition:opacity 1.2s ease;
-}
-
-body.show-page{
-    opacity:1;
 }
 
 /* INTRO */
@@ -30,16 +24,8 @@ body.show-page{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    z-index:9999;
-    transition:opacity 1s ease;
-    padding:20px;
+    z-index:999;
 }
-
-#intro.fade-out{
-    opacity:0;
-    pointer-events:none;
-}
-
 #intro button{
     margin-top:20px;
     padding:12px 25px;
@@ -49,16 +35,9 @@ body.show-page{
     color:#c1005b;
     font-weight:bold;
     cursor:pointer;
-    transition:.25s;
-}
-#intro button:hover{
-    transform:scale(1.05);
 }
 
-h1{
-    margin-top:40px;
-    font-size:42px;
-}
+h1{margin-top:40px;}
 
 .btn{
     background:white;
@@ -69,44 +48,12 @@ h1{
     cursor:pointer;
     margin:10px;
     font-weight:bold;
-    transition:.25s;
-}
-.btn:hover{
-    transform:scale(1.05);
 }
 
 #contador{
     font-size:20px;
     margin:15px;
     font-weight:bold;
-}
-
-/* LO QUE MAS AMO DE TI */
-.love-box{
-    width:min(800px,92%);
-    margin:20px auto;
-    background:rgba(255,255,255,0.14);
-    border-radius:22px;
-    padding:22px;
-    box-shadow:0 8px 24px rgba(0,0,0,0.18);
-    backdrop-filter:blur(4px);
-}
-
-.love-box h2{
-    margin-top:0;
-    margin-bottom:10px;
-}
-
-#fraseAmor{
-    font-size:24px;
-    font-weight:bold;
-    min-height:36px;
-    transition:opacity .5s ease, transform .5s ease;
-}
-
-.fade-frase{
-    opacity:0;
-    transform:translateY(8px);
 }
 
 /* GALERIA */
@@ -124,7 +71,6 @@ h1{
     cursor:pointer;
     opacity:0;
     transform:translateY(20px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.20);
 }
 .gallery img.show{
     opacity:1;
@@ -141,8 +87,6 @@ h1{
     width:100%;
     height:500px;
     border-radius:20px;
-    border:none;
-    box-shadow:0 8px 24px rgba(0,0,0,0.25);
 }
 
 /* MODALS */
@@ -153,12 +97,10 @@ h1{
     display:none;
     justify-content:center;
     align-items:center;
-    z-index:9998;
 }
 .modalImg img{
     max-width:90%;
     max-height:90%;
-    border-radius:20px;
 }
 
 .modal{
@@ -168,12 +110,8 @@ h1{
     display:none;
     align-items:center;
     justify-content:center;
-    z-index:9998;
-    padding:20px;
 }
-.modal.show{
-    display:flex;
-}
+.modal.show{display:flex;}
 
 .modal-card{
     background:white;
@@ -184,54 +122,23 @@ h1{
     border-radius:20px;
     padding:25px;
     text-align:left;
-    box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 .close-btn{
     float:right;
     cursor:pointer;
     font-weight:bold;
-    font-size:20px;
 }
 
 .firma{
     text-align:right;
     color:#c1005b;
     font-weight:bold;
-    margin-top:15px;
 }
 
 #letterText{
     white-space:pre-wrap;
-    line-height:1.6;
-}
-
-/* MENSAJE FINAL */
-.final-message{
-    width:min(850px,92%);
-    margin:50px auto 60px;
-    padding:28px;
-    background:rgba(255,255,255,0.14);
-    border-radius:24px;
-    box-shadow:0 8px 24px rgba(0,0,0,0.18);
-}
-
-.final-message h2{
-    margin-top:0;
-    font-size:30px;
-}
-
-.final-message p{
-    font-size:20px;
-    line-height:1.6;
-    margin-bottom:0;
-}
-
-@media (max-width:600px){
-    h1{ font-size:34px; }
-    .video-box iframe{ height:360px; }
-    #fraseAmor{ font-size:20px; }
-    .final-message p{ font-size:18px; }
+    line-height:1.5;
 }
 </style>
 </head>
@@ -240,272 +147,181 @@ h1{
 
 <!-- INTRO -->
 <div id="intro">
-    <h2>Antes de empezar… ❤️</h2>
-    <p>Esto es solo para ti, Carito</p>
-    <button onclick="entrar()">Entrar ✨</button>
+<h2>Antes de empezar… ❤️</h2>
+<p>Esto es solo para ti, Carito</p>
+<button onclick="entrar()">Entrar ✨</button>
 </div>
 
 <!-- MUSICA -->
-<audio id="musica" loop preload="auto">
-    <source src="34728d09-115c-4829-bc5d-6d06e9969288.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
+<audio id="musica" loop>
+<source src="cancion.mp3.mp3" type="audio/mpeg">
 </audio>
 
-<h1>Feliz 3 Años Carito ❤️</h1>
+<h1>Feliz 3 Años, Carito ❤️</h1>
 <p>Gracias por hacer mi vida más bonita desde el primer día.</p>
 
 <div id="contador"></div>
 
-<button class="btn" onclick="toggleMusica()" id="btnMusica">🎵 Reproducir música</button>
+<button class="btn" onclick="toggleMusica()" id="btnMusica">🎵 Música</button>
 <button class="btn" onclick="abrirCarta()">Abrir carta 💌</button>
 
 <p>💫 Desde que empezamos a salir (31/10/2022)</p>
 <p>❤️ Desde que somos novios (12/03/2023)</p>
 
-<!-- LO QUE MAS AMO DE TI -->
-<div class="love-box">
-    <h2>Lo que más amo de ti ❤️</h2>
-    <div id="fraseAmor">Tu forma de hacer mi vida más bonita.</div>
-</div>
-
 <!-- GALERIA -->
 <div class="gallery">
-    <img src="1c.jpg" onclick="openModal(this.src)">
-    <img src="2c.jpg" onclick="openModal(this.src)">
-    <img src="3c.jpg" onclick="openModal(this.src)">
-    <img src="4c.jpg" onclick="openModal(this.src)">
-    <img src="5c.jpg" onclick="openModal(this.src)">
-    <img src="6c.jpg" onclick="openModal(this.src)">
-    <img src="7c.jpg" onclick="openModal(this.src)">
-    <img src="8c.jpg" onclick="openModal(this.src)">
-    <img src="9c.jpg" onclick="openModal(this.src)">
-    <img src="10c.jpg" onclick="openModal(this.src)">
-    <img src="11c.jpg" onclick="openModal(this.src)">
-    <img src="12c.jpg" onclick="openModal(this.src)">
-    <img src="13c.jpg" onclick="openModal(this.src)">
-    <img src="14c.jpg" onclick="openModal(this.src)">
-    <img src="15c.jpg" onclick="openModal(this.src)">
-    <img src="16c.jpg" onclick="openModal(this.src)">
-    <img src="17c.jpg" onclick="openModal(this.src)">
-    <img src="18c.jpg" onclick="openModal(this.src)">
-    <img src="19c.jpg" onclick="openModal(this.src)">
-    <img src="20c.jpg" onclick="openModal(this.src)">
-    <img src="21c.jpg" onclick="openModal(this.src)">
-    <img src="22c.jpg" onclick="openModal(this.src)">
-    <img src="23c.jpg" onclick="openModal(this.src)">
-    <img src="24c.jpg" onclick="openModal(this.src)">
-    <img src="25c.jpg" onclick="openModal(this.src)">
-    <img src="26c.jpg" onclick="openModal(this.src)">
-    <img src="27c.jpg" onclick="openModal(this.src)">
-    <img src="28c.jpg" onclick="openModal(this.src)">
-    <img src="29c.jpg" onclick="openModal(this.src)">
-    <img src="30c.jpg" onclick="openModal(this.src)">
+<img src="1c.jpg" onclick="openModal(this.src)">
+<img src="2c.jpg" onclick="openModal(this.src)">
+<img src="3c.jpg" onclick="openModal(this.src)">
+<img src="4c.jpg" onclick="openModal(this.src)">
+<img src="5c.jpg" onclick="openModal(this.src)">
+<img src="6c.jpg" onclick="openModal(this.src)">
+<img src="7c.jpg" onclick="openModal(this.src)">
+<img src="8c.jpg" onclick="openModal(this.src)">
+<img src="9c.jpg" onclick="openModal(this.src)">
+<img src="10c.jpg" onclick="openModal(this.src)">
+<img src="11c.jpg" onclick="openModal(this.src)">
+<img src="12c.jpg" onclick="openModal(this.src)">
+<img src="13c.jpg" onclick="openModal(this.src)">
+<img src="14c.jpg" onclick="openModal(this.src)">
+<img src="15c.jpg" onclick="openModal(this.src)">
+<img src="16c.jpg" onclick="openModal(this.src)">
+<img src="17c.jpg" onclick="openModal(this.src)">
+<img src="18c.jpg" onclick="openModal(this.src)">
+<img src="19c.jpg" onclick="openModal(this.src)">
+<img src="20c.jpg" onclick="openModal(this.src)">
+<img src="21c.jpg" onclick="openModal(this.src)">
+<img src="22c.jpg" onclick="openModal(this.src)">
+<img src="23c.jpg" onclick="openModal(this.src)">
+<img src="24c.jpg" onclick="openModal(this.src)">
+<img src="25cc.jpg" onclick="openModal(this.src)">
+<img src="26c.jpg" onclick="openModal(this.src)">
+<img src="27c.jpg" onclick="openModal(this.src)">
+<img src="28c.jpg" onclick="openModal(this.src)">
+<img src="29c.jpg" onclick="openModal(this.src)">
+<img src="30c.jpg" onclick="openModal(this.src)">
 </div>
 
 <!-- VIDEO -->
 <h2>Nuestro video ❤️</h2>
 <div class="video-box">
-    <iframe
-        id="ytvideo"
-        src="https://www.youtube.com/embed/CZZmJCj-fuo?enablejsapi=1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
+<iframe id="ytvideo"
+src="https://www.youtube.com/embed/CZZmJCj-fuo?enablejsapi=1"
+allowfullscreen></iframe>
 </div>
 
-<!-- MENSAJE FINAL -->
-<div class="final-message">
-    <h2>Gracias por estos 3 años ❤️</h2>
-    <p>
-        Gracias por cada risa, cada abrazo, cada momento bonito y por hacerme sentir tan afortunado de tenerte en mi vida.
-        Esto es solo una pequeña forma de recordarte lo mucho que te amo, lo orgulloso que estoy de ti y lo feliz que soy contigo.
-        Y aunque ahora nos toque celebrar a distancia, sé que todo lo mejor que viene lo vamos a vivir juntos.
-        Te amo hoy, mañana y siempre. ❤️
-    </p>
-</div>
-
-<!-- MODAL FOTO -->
+<!-- MODALS -->
 <div class="modalImg" id="modalImg" onclick="closeModal()">
-    <img id="imgGrande">
+<img id="imgGrande">
 </div>
 
-<!-- MODAL CARTA -->
 <div id="letterModal" class="modal">
-    <div class="modal-card">
-        <span class="close-btn" onclick="closeLetter()">✕</span>
-        <h2>Para ti ❤️</h2>
-        <div id="letterText"></div>
-        <div class="firma">— Jose Hugo ❤️</div>
-    </div>
+<div class="modal-card">
+<span class="close-btn" onclick="closeLetter()">✕</span>
+<h2>Para ti ❤️</h2>
+<div id="letterText"></div>
+<div class="firma">— Jose Hugo ❤️</div>
+</div>
 </div>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-let reproduciendo = false;
-let player = null;
-let typingTimer = null;
 
-/* INTRO + FADE + INICIAR MUSICA */
+/* INTRO */
 function entrar(){
-    const intro = document.getElementById("intro");
-    const musica = document.getElementById("musica");
-    const btn = document.getElementById("btnMusica");
-
-    intro.classList.add("fade-out");
-    document.body.classList.add("show-page");
-
-    musica.volume = 0.7;
-
-    musica.play()
-        .then(() => {
-            reproduciendo = true;
-            btn.innerText = "⏸️ Pausar música";
-        })
-        .catch(() => {
-            reproduciendo = false;
-            btn.innerText = "🎵 Reproducir música";
-        });
-
-    setTimeout(() => {
-        intro.style.display = "none";
-    }, 1000);
+document.getElementById("intro").style.display="none";
+document.getElementById("musica").play();
 }
 
 /* CONTADOR */
 function actualizarContador(){
-    const inicio = new Date("2023-03-12T00:00:00");
-    const ahora = new Date();
-    const diff = ahora - inicio;
+const inicio=new Date("2023-03-12");
+const ahora=new Date();
+const diff=ahora-inicio;
 
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const segs = Math.floor((diff / 1000) % 60);
+const dias=Math.floor(diff/(1000*60*60*24));
+const horas=Math.floor((diff/(1000*60*60))%24);
+const mins=Math.floor((diff/(1000*60))%60);
+const segs=Math.floor((diff/1000)%60);
 
-    document.getElementById("contador").innerHTML =
-        `⏳ Llevamos juntos: ${dias} días ${horas}h ${mins}m ${segs}s ❤️`;
+document.getElementById("contador").innerHTML=
+`⏳ Llevamos juntos: ${dias} días ${horas}h ${mins}m ${segs}s ❤️`;
 }
-setInterval(actualizarContador, 1000);
+setInterval(actualizarContador,1000);
 actualizarContador();
 
-/* BOTON MUSICA */
+/* MUSICA BOTON */
+let reproduciendo=false;
 function toggleMusica(){
-    const musica = document.getElementById("musica");
-    const btn = document.getElementById("btnMusica");
+const m=document.getElementById("musica");
+const btn=document.getElementById("btnMusica");
 
-    if(!reproduciendo){
-        musica.play()
-            .then(() => {
-                reproduciendo = true;
-                btn.innerText = "⏸️ Pausar música";
-            })
-            .catch(() => {
-                btn.innerText = "🎵 Reproducir música";
-            });
-    }else{
-        musica.pause();
-        reproduciendo = false;
-        btn.innerText = "🎵 Reproducir música";
-    }
+if(!reproduciendo){
+m.play();
+btn.innerText="⏸️ Pausar música";
+reproduciendo=true;
+}else{
+m.pause();
+btn.innerText="🎵 Música";
+reproduciendo=false;
+}
 }
 
-/* FRASES QUE CAMBIAN */
-const frasesAmor = [
-    "Tu forma de hacer mi vida más bonita.",
-    "Tu sonrisa que siempre me da paz.",
-    "Lo auténtica y especial que eres.",
-    "Lo orgulloso que me haces sentir de ti.",
-    "La tranquilidad que siento cuando estoy contigo.",
-    "Tu manera de hacer especiales hasta los momentos más simples.",
-    "Todo lo que eres y todo lo que me haces sentir.",
-    "Que contigo todo se disfruta más."
-];
-
-let indiceFrase = 0;
-const fraseEl = document.getElementById("fraseAmor");
-
-function cambiarFrase(){
-    fraseEl.classList.add("fade-frase");
-
-    setTimeout(() => {
-        indiceFrase = (indiceFrase + 1) % frasesAmor.length;
-        fraseEl.textContent = frasesAmor[indiceFrase];
-        fraseEl.classList.remove("fade-frase");
-    }, 400);
-}
-setInterval(cambiarFrase, 3000);
-
-/* CARTA */
-const CARTA = `Mi niña felices 3 años, es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti. No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba tener el privilegio de estar con esa niña tan hermosa, autentica y perfecta durante estos tres años. Contigo simplemente disfruto más mi vida, cosas tan simples como descansar, comer, ver una película, platicar, dormir, caminar, etc., haces que se sientan especial. A todo le das tu toque autentico y haces que lo disfrute más, te agradezco por estar 365 días más conmigo, que me imagino que no es fácil porque si soy un poco cadillo jajaja, pero espero y también eso haga que no te aburras. Poniéndonos un poco más serios, te quiero dar las gracias a ti por ser mi lugar seguro, un lugar en donde puedo ser yo y aunque a veces me cueste que sea un lugar en donde pueda expresar el cómo me siento, el solo verte a los ojos o sentir un abrazo tuyo hace que mis problemas dejen de verse como tal y en cambio los vea como una oportunidad de mejorar, porque si te tengo a ti a mi lado no necesito porque preocuparme. Contigo me siento pleno y seguro, no me canso de estar contigo y de poder compartir momentos inolvidables a tu lado, y sobre todo me encanta sentirme orgulloso de ti, de tu esfuerzo y dedicación que le pones a tus responsabilidades y actividades, me motiva el verte feliz haciendo cosas como ejercicio, trabajo, estudio, me llenas de orgullo el poder ver como todo lo que haces lo haces con 100 por ciento de esfuerzo y con ganas de superarte día a día. Eres la mujer de mis sueños, estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino, gracias niña por estos tres años y aunque llevemos dos años celebrando a distancia no serán nada a lado de los que celebraremos juntos en el futuro, te amo hoy y siempre.`;
+/* CARTA COMPLETA */
+const CARTA=`Mi niña felices 3 años, es impresionante lo rápido que pasa el tiempo a tu lado, sin duda alguna esto es por lo feliz y enamorado que estoy de ti. No podría imaginarme regresar en el tiempo a cuando nos conocimos en la casa de Andreita y que alguien me dijera que iba tener el privilegio de estar con esa niña tan hermosa, autentica y perfecta durante estos tres años. Contigo simplemente disfruto más mi vida, cosas tan simples como descansar, comer, ver una película, platicar, dormir, caminar, etc., haces que se sientan especial. A todo le das tu toque autentico y haces que lo disfrute más, te agradezco por estar 365 días más conmigo, que me imagino que no es fácil porque si soy un poco cadillo jajaja, pero espero y también eso haga que no te aburras. Poniéndonos un poco más serios, te quiero dar las gracias a ti por ser mi lugar seguro, un lugar en donde puedo ser yo y aunque a veces me cueste que sea un lugar en donde pueda expresar el cómo me siento, el solo verte a los ojos o sentir un abrazo tuyo hace que mis problemas dejen de verse como tal y en cambio los vea como una oportunidad de mejorar, porque si te tengo a ti a mi lado no necesito porque preocuparme. Contigo me siento pleno y seguro, no me canso de estar contigo y de poder compartir momentos inolvidables a tu lado, y sobre todo me encanta sentirme orgulloso de ti, de tu esfuerzo y dedicación que le pones a tus responsabilidades y actividades, me motiva el verte feliz haciendo cosas como ejercicio, trabajo, estudio, me llenas de orgullo el poder ver como todo lo que haces lo haces con 100 por ciento de esfuerzo y con ganas de superarte día a día. Eres la mujer de mis sueños, estaré eternamente agradecido con Dios y con la vida de que te pusiera en mi camino, gracias niña por estos tres años y aunque llevemos dos años celebrando a distancia no serán nada a lado de los que celebraremos juntos en el futuro, te amo hoy y siempre.`;
 
 function abrirCarta(){
-    document.getElementById("letterModal").classList.add("show");
-    const target = document.getElementById("letterText");
-    target.textContent = "";
+document.getElementById("letterModal").classList.add("show");
+let i=0;
+let txt="";
+const target=document.getElementById("letterText");
 
-    if(typingTimer) clearInterval(typingTimer);
-
-    let i = 0;
-    typingTimer = setInterval(() => {
-        target.textContent += CARTA.charAt(i);
-        i++;
-        if(i >= CARTA.length){
-            clearInterval(typingTimer);
-            typingTimer = null;
-        }
-    }, 15);
+const timer=setInterval(()=>{
+txt+=CARTA.charAt(i);
+target.textContent=txt;
+i++;
+if(i>=CARTA.length) clearInterval(timer);
+},15);
 }
-
 function closeLetter(){
-    document.getElementById("letterModal").classList.remove("show");
-    if(typingTimer){
-        clearInterval(typingTimer);
-        typingTimer = null;
-    }
+document.getElementById("letterModal").classList.remove("show");
 }
 
 /* MODAL FOTOS */
 function openModal(src){
-    document.getElementById("imgGrande").src = src;
-    document.getElementById("modalImg").style.display = "flex";
+document.getElementById("imgGrande").src=src;
+document.getElementById("modalImg").style.display="flex";
 }
 function closeModal(){
-    document.getElementById("modalImg").style.display = "none";
+document.getElementById("modalImg").style.display="none";
 }
 
 /* FADE FOTOS */
-const imgs = document.querySelectorAll(".gallery img");
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.15 });
+const imgs=document.querySelectorAll(".gallery img");
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+}
+});
+});
+imgs.forEach(i=>observer.observe(i));
 
-imgs.forEach(img => observer.observe(img));
-
-/* YOUTUBE API */
+/* PAUSAR MUSICA SI VIDEO SUENA */
+let player;
 function onYouTubeIframeAPIReady(){
-    player = new YT.Player('ytvideo', {
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-    });
+player=new YT.Player('ytvideo',{
+events:{'onStateChange':onPlayerStateChange}
+});
 }
-
 function onPlayerStateChange(event){
-    const musica = document.getElementById("musica");
-    const btn = document.getElementById("btnMusica");
-
-    if(event.data === 1){
-        musica.pause();
-        reproduciendo = false;
-        btn.innerText = "🎵 Reproducir música";
-    }
+if(event.data==1){
+document.getElementById("musica").pause();
 }
+}
+
 </script>
 
 </body>
